@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "fonts": "get-google-fonts --overwriting --useragent 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko' --output assets --input 'https://fonts.googleapis.com/css?family=Kanit:300,900'",
+    "sync": "browser-sync start --server --files \"**/*\"",
+    "dev": "postcss assets/style.tailwind.css --output assets/style.css",
+    "watch:dev": "npm run dev -w",
+    "prod": "NODE_ENV=production npm run dev",
+    "watch": "run-p watch:dev sync"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.7.6",
+    "cssnano": "^4.1.10",
+    "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.1",
+    "postcss-import": "^12.0.1",
+    "tailwind-content-placeholder": "^0.0.4",
+    "tailwindcss": "^1.4.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "get-google-fonts": "^1.2.2"
+  }
+}

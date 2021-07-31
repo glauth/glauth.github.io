@@ -1,11 +1,5 @@
-# Tailwind CSS + PostCSS + BrowserSync boilerplate
+This is a temporary website so that curious folks have something to look at.
 
-## 💡 Features
-- Tailwind CSS, AutoPrefixer, PurgeCSS and CSSnano configed in PostCSS
-- [Optional] automatically download google fonts using get-google-fonts
-  
-## 🏄‍♀️ How to use
-- Use `npm run fonts` to download font files from google fonts to `/assets`
-- Use `npm run dev` to generate CSS from `style.tailwind.css` to `/assets`
-- Use `npm run prod` to generate CSS and Purge it and Minify it
-- Use `npm run watch` to watch for changes and run browser-sync
+Followed a few "startup marketing" principles.
+
+Still quite bare but I don't think either of us would like to add fluff for no reason.

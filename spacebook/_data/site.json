@@ -1,0 +1,21 @@
+{
+  "name": "GLAuth",
+  "subtitle": "Documentation",
+  "description": "GLAuth Documentation",
+  "footer": "Copyright and all",
+  "url": "https://glauth.github.io/docs",
+  "githubUrl": "https://github.com/glauth/glauth.github.io",
+  "githubBranch": "main",
+  "navigationStyle": "vertical",
+  "emoji": "💥",
+  "enableSearch": true,
+  "enableDarkMode": true,
+  "enableEditButton": true,
+  "enableDatestamp": true,
+  "enableGithubLink": false,
+  "enableContact": false,
+  "enableNetlifyCMS": false,
+  "enableComments": false,
+  "enableEncryption": false,
+  "enablePageNavigation": true
+}

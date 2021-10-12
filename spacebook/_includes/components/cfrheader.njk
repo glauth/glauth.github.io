@@ -1,0 +1,90 @@
+  <nav class="w-full">
+    <div class="container mx-auto px-6 flex items-center justify-between">
+        <div aria-label="Home. logo" role="img">
+            <img class="object-scale-down w-12 h-12" src="/assets/logo.png">
+        </div>
+        <div>
+            <button onclick="toggleMenu(true)" class="sm:block md:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
+                <svg aria-haspopup="true" aria-label="open Main Menu" xmlns="http://www.w3.org/2000/svg" class="md:hidden icon icon-tabler icon-tabler-menu" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round">
+                    <path stroke="none" d="M0 0h24v24H0z"></path>
+                    <line x1="4" y1="8" x2="20" y2="8"></line>
+                    <line x1="4" y1="16" x2="20" y2="16"></line>
+                </svg>
+            </button>
+            <div id="menu" class="md:block lg:block hidden">
+                <button onclick="toggleMenu(false)" class="block md:hidden lg:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 fixed focus:outline-none focus:ring-2 focus:ring-gray-500 z-30 top-0 mt-6">
+                    <svg aria-label="close main menu" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" />
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+                <ul class="flex text-3xl md:text-base items-center py-10 md:flex flex-col md:flex-row justify-center fixed md:relative top-0 bottom-0 left-0 right-0 bg-white md:bg-transparent z-20">
+                    <li class="text-gray-800 hover:text-gray-900 cursor-pointer lg:text-lg pt-10 md:pt-0">
+                        <a href="https://github.com/glauth/glauth/releases">Releases</a>
+                    </li>
+                    <li class="text-gray-800 hover:text-gray-900 cursor-pointer lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
+                        <a href="/docs/"><strong>Learn/Documentation</strong></a>
+                    </li>
+                    <li class="text-gray-800 hover:text-gray-900 cursor-pointer lg:text-lg pt-10 md:pt-0 md:ml-5 lg:ml-10">
+                    <div x-data="{ 'showChatModal': false }">
+
+                        <button type="button" @click="showChatModal = true">Chat &amp; Support</button>
+                      
+                        <div
+                          class="fixed inset-0 z-30 flex items-center justify-center overflow-auto bg-black bg-opacity-50 transition duration-150 easy-in-out"
+                          x-show="showChatModal" @keydown.escape="showChatModal=false"
+                        >
+                            <div
+                                role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg flex justify-center"
+                                @click.away="showChatModal=false">
+                                <div class="flex items-center justify-center py-8 px-4">
+                                    <div class="relative md:w-80 max-w-xs rounded shadow-lg p-6 dark:bg-gray-800 bg-white">
+                                        <h1 class="dark:text-gray-100 text-gray-800 font-bold text-lg">Chat &amp; Help</h1>
+                                        <a href="https://gitter.im/glauth/community">
+                                        <div class="flex items-center justify-between mt-4 border-gray-400 border rounded-lg px-4 py-4 cursor-pointer">
+                                            <p class="text-base font-medium leading-4 dark:text-gray-100 text-gray-800">Gitter Chat</p>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                                              </svg>
+                                        </div>
+                                        </a>
+                                        <div class="w-full bg-gray-100 rounded-lg flex items-center justify-between pt-4 pb-0">
+                                            <p tabindex="0" class="focus:outline-none mb-3 text-sm text-gray-600 dark:text-gray-400 text-center font-normal">
+                                                You can use Matrix chat if you already have a federated account. To join the conversation:
+                                            </p>
+                                        </div>
+                                        <div class="bg-indigo-100 rounded p-3">
+                                            <div tabindex="0" aria-label="copy link" class="focus:outline-none flex items-center">
+                                                <svg tabindex="0" aria-label="copy link icon" role="img" class="focus:outline-none" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M9.18213 7.76799L8.47513 7.05999L9.18213 6.35299C9.41594 6.12122 9.60168 5.84554 9.72866 5.54179C9.85565 5.23804 9.92139 4.9122 9.92211 4.58298C9.92283 4.25375 9.85852 3.92763 9.73286 3.62332C9.60721 3.31902 9.42268 3.04253 9.18989 2.80974C8.95709 2.57694 8.6806 2.39241 8.3763 2.26676C8.072 2.1411 7.74587 2.07679 7.41665 2.07751C7.08742 2.07823 6.76158 2.14397 6.45783 2.27096C6.15408 2.39795 5.8784 2.58368 5.64663 2.81749L4.93963 3.52499L4.23213 2.81799L4.94013 2.11099C5.59654 1.45458 6.48682 1.08582 7.41513 1.08582C8.34343 1.08582 9.23372 1.45458 9.89013 2.11099C10.5465 2.7674 10.9153 3.65769 10.9153 4.58599C10.9153 5.5143 10.5465 6.40458 9.89013 7.06099L9.18263 7.76799H9.18213ZM7.76813 9.18199L7.06063 9.88899C6.40422 10.5454 5.51393 10.9142 4.58563 10.9142C3.65732 10.9142 2.76704 10.5454 2.11063 9.88899C1.45422 9.23258 1.08545 8.3423 1.08545 7.41399C1.08545 6.48569 1.45422 5.59541 2.11063 4.93899L2.81813 4.23199L3.52513 4.93999L2.81813 5.64699C2.58431 5.87877 2.39858 6.15445 2.27159 6.4582C2.1446 6.76195 2.07886 7.08779 2.07814 7.41701C2.07742 7.74624 2.14173 8.07236 2.26739 8.37667C2.39305 8.68097 2.57757 8.95746 2.81037 9.19025C3.04317 9.42305 3.31965 9.60758 3.62396 9.73323C3.92826 9.85889 4.25438 9.9232 4.58361 9.92248C4.91284 9.92176 5.23868 9.85602 5.54243 9.72903C5.84618 9.60204 6.12185 9.41631 6.35363 9.18249L7.06063 8.47549L7.76813 9.18249V9.18199ZM7.41413 3.87849L8.12163 4.58599L4.58613 8.12099L3.87863 7.41399L7.41413 3.87899V3.87849Z"
+                                                        fill="#4338CA"
+                                                    />
+                                                </svg>
+                                                <p class="text-xs pl-3 pr-4 leading-3 text-indigo-700">
+                                                /join #glauth_community:gitter.im
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <button aria-label="close modal" class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 dark:text-gray-100 text-gray-400 hover: dark:text-gray-100 text-gray-600 transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-black rounded" @click="showChatModal=false">
+                                            <svg  xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" />
+                                                <line x1="18" y1="6" x2="6" y2="18" />
+                                                <line x1="6" y1="6" x2="18" y2="18" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      </li>
+                </ul>
+            </div>
+        </div>
+        &nbsp;
+    </div>
+</nav>
+
+<!-- hero -->

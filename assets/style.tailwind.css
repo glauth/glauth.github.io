@@ -7,3 +7,204 @@
 ::selection {
   background: yellow;
 }
+
+/* CFR: a workaround for tailwind setting table style to 'table' */
+/* This would break code highlighting */
+.token.table {
+  display: inline;
+}
+
+/*
+  Blur and dim the lines that don't have the `.line-focus` class,
+  but are within a code block that contains any focus lines.
+*/
+.torchlight.has-focus-lines .line:not(.line-focus) {
+  transition: filter 0.35s, opacity 0.35s;
+  filter: blur(.095rem);
+  opacity: .65;
+}
+
+/*
+When the code block is hovered, bring all the lines into focus.
+*/
+.torchlight.has-focus-lines:hover .line:not(.line-focus) {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+p code, li code {
+  color: #A6ACCD !important;
+  background-color: #292D3E;
+  --theme-selection-background: #00000080;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	font-size: 1em;
+	line-height: 1.5em;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+
+  white-space: normal;
+	border-radius: 0.2em;
+	padding: 0.1em;
+}
+
+p code::before, p code::after, li code::before, li code::after {
+  content: "" !important;
+}
+
+/* labels */
+.mdi-label {
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: 700;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.mdi-label-text-light {
+  color: white
+}
+
+.mdi-label-text-dark {
+  color: #332900
+}
+
+@layer base {
+  
+  /* Set up some default image behavior for nicer images */
+  /*
+  img {
+    @apply w-auto  shadow-md border-2 border-transparent !important
+  }
+  img:hover {
+    @apply border-2 border-gray-100
+  }
+  */
+  /* Overrides for Tailwind Typography prose class */
+  .prose a {
+    @apply dark:text-gray-400
+  }
+  .prose a:hover {
+    @apply dark:text-gray-500
+  }
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 .prose hr, .prose strong {
+    @apply dark:text-gray-400
+  }
+  .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+    scroll-margin-top: 3.5em;
+  }
+  .prose pre code {
+    @apply overflow-x-auto !important 
+  }
+  .prose .footer-nav a {
+    @apply no-underline !important
+  }
+  .prose ul.contains-task-list,
+  .prose ul.spacelog  {
+    @apply list-none -ml-6 !important;
+  }
+  .prose ul.contains-task-list .task-list-item,
+  .prose ul.spacelog {
+    ::before {
+      @apply hidden !important;
+    }
+  }
+
+  /* Define blockquotes and some standard callout blocks */
+  blockquote {
+    @apply rounded-lg p-4 bg-gray-100 dark:bg-gray-500 border-gray-200 border-l-8 dark:border-gray-700;
+  }
+  .callout {
+    @apply px-8 py-4 mb-4 rounded-lg bg-yellow-50;
+  }
+  .callout, .callout strong, .callout em {
+    @apply dark:bg-gray-400 dark:text-gray-900;
+  }
+  .callout-blue {
+    @apply px-8 py-4 mb-4 rounded-lg bg-blue-50;
+  }
+  .callout-blue, .callout-blue strong, .callout-blue em {
+    @apply dark:text-gray-200 dark:bg-blue-900;
+  }
+  .callout-pink {
+    @apply px-8 py-4 mb-4 rounded-lg bg-pink-50;
+  }
+  .callout-pink, .callout-pink strong, .callout-pink em {
+    @apply dark:text-gray-200 dark:bg-pink-900;
+  }
+  .callout-green {
+    @apply px-8 py-4 mb-4 rounded-lg bg-green-50;
+  }
+  .callout-green, .callout-green strong, .callout-green em {
+    @apply dark:text-gray-200 dark:bg-green-900;
+  }
+  .warning {
+    @apply px-8 py-4 mb-4 rounded-lg bg-red-800 text-gray-50;
+  }
+  .warning, .warning strong, .warning em {
+    @apply text-gray-50 dark:bg-red-900  dark:text-gray-200;
+  }
+
+  /* Overrides for nav/Table of Contents block */
+  #navigation ul {
+    @apply ml-0 text-gray-500;
+   }
+  #navigation ul ul {
+   @apply ml-6 text-gray-500;
+  }
+  #navigation ul li a {
+    @apply pt-1 pr-4 pb-1 pl-2 w-full block text-gray-500 dark:text-gray-500;
+  }
+  #navigation ul li a:hover {
+    @apply text-gray-900 dark:text-gray-400;
+  }
+  #navigation ul li a.active {
+    @apply font-semibold;
+  }
+  #navigation.toc ol li {
+    @apply pt-2 !important
+  }
+  #navigation.toc ol li li {
+    @apply pt-2 ml-4
+  }
+  #navigation.toc ol li a {
+    @apply text-gray-500
+  }
+  #navigation.toc ol li a:hover {
+    @apply text-gray-900
+  }
+  .prose .footer-nav a:hover {
+    @apply dark:text-gray-400 !important
+  }
+
+/* Utilities and misc */
+  .adjust  p img, .adjust img, .adjust p iframe, .adjust iframe, .twitter-tweet {
+    @apply shadow-md ml-auto mr-auto  p-2 !important
+  }
+  .adjust  p img:hover, .adjust img:hover {
+    @apply shadow-xl  
+  }
+  .adjust img.button {
+    @apply w-auto  shadow-none !important
+  }
+  .text-align-center {
+    @apply flex justify-center; 
+  }
+  .icon-spacer {
+    width: "24px";
+  }
+  input {
+   @apply dark:text-gray-400
+  }
+}

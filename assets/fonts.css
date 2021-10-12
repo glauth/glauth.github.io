@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 300;
+  src: url('./Kanit-300-1.woff') format('woff');
+}
+@font-face {
+  font-family: 'Kanit';
+  font-style: normal;
+  font-weight: 900;
+  src: url('./Kanit-900-2.woff') format('woff');
+}

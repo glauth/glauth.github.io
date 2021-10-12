@@ -2,6 +2,7 @@
 <html {% if section %} data-current="{{ section }}"{% endif %} lang="en">
   {% include "components/head.njk" %}
   <body>
+    {% include "components/cfrheader.njk" %}
     <div id="app" class="h-screen bg-white dark:bg-gray-900">
       {% include "components/header.njk" %}
       {% if site.navigationStyle == "vertical" %}
@@ -25,5 +26,6 @@
         {% include "components/footer.njk" %} 
         </main>
     </div>
+  
   </body>
 </html>

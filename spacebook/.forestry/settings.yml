@@ -17,7 +17,7 @@ file_template: ":filename:"
 build:
   preview_env:
   - ELEVENTY_ENV=dev
-  preview_output_directory: _site
+  preview_output_directory: ../docs
   install_dependencies_command: npm install
   preview_docker_image: forestryio/node:12
   mount_path: "/srv"

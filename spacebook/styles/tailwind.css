@@ -1,6 +1,75 @@
+@tailwind "../assets/fonts.css"
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* CFR: a workaround for tailwind setting table style to 'table' */
+/* This would break code highlighting */
+.token.table {
+  display: inline;
+}
+
+/*
+  Blur and dim the lines that don't have the `.line-focus` class,
+  but are within a code block that contains any focus lines.
+*/
+.torchlight.has-focus-lines .line:not(.line-focus) {
+  transition: filter 0.35s, opacity 0.35s;
+  filter: blur(.095rem);
+  opacity: .65;
+}
+
+/*
+When the code block is hovered, bring all the lines into focus.
+*/
+.torchlight.has-focus-lines:hover .line:not(.line-focus) {
+  filter: blur(0px);
+  opacity: 1;
+}
+
+p code, li code {
+  color: #A6ACCD !important;
+  background-color: #292D3E;
+  --theme-selection-background: #00000080;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	font-size: 1em;
+	line-height: 1.5em;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+
+  white-space: normal;
+	border-radius: 0.2em;
+	padding: 0.1em;
+}
+
+/* labels */
+.mdi-label {
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: 700;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.mdi-label-text-light {
+  color: white
+}
+
+.mdi-label-text-dark {
+  color: #332900
+}
 
 @layer base {
   
@@ -77,31 +146,31 @@
   }
 
   /* Overrides for nav/Table of Contents block */
-  nav ul {
+  #navigation ul {
     @apply ml-0 text-gray-500;
    }
-  nav ul ul {
+  #navigation ul ul {
    @apply ml-6 text-gray-500;
   }
-  nav ul li a {
-    @apply mb-1 pt-2 pr-4 pb-1 pl-2 w-full block text-gray-500 dark:text-gray-500;
+  #navigation ul li a {
+    @apply pt-1 pr-4 pb-1 pl-2 w-full block text-gray-500 dark:text-gray-500;
   }
-  nav ul li a:hover {
+  #navigation ul li a:hover {
     @apply text-gray-900 dark:text-gray-400;
   }
-  nav ul li a.active {
+  #navigation ul li a.active {
     @apply font-semibold;
   }
-  nav.toc ol li {
+  #navigation.toc ol li {
     @apply pt-2 !important
   }
-  nav.toc ol li li {
+  #navigation.toc ol li li {
     @apply pt-2 ml-4
   }
-  nav.toc ol li a {
+  #navigation.toc ol li a {
     @apply text-gray-500
   }
-  nav.toc ol li a:hover {
+  #navigation.toc ol li a:hover {
     @apply text-gray-900
   }
   .prose .footer-nav a:hover {

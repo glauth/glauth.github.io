@@ -1,15 +1,15 @@
 ---
-title: Hello, world.
+title: Introduction
 date: Last Modified 
 permalink: /
 eleventyNavigation:
-  key: Hello 
+  key: Introduction
   order: 0
-  title: Hello, world.
+  title: Introduction
 ---
-You have successfully launched your spacebook. If you are new here, you may want to [read the docs](https://spacebook.app/) for tips and tricks on setting up your project.
+GLAuth Official Documentation. Obviously, a work in progress!
 
-![Hello, world](/content/images/hello.jpg)
+![Hello, world](/docs/content/images/hello.jpg)
 
 ->*Onward...*<-
 

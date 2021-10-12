@@ -5,13 +5,21 @@ const htmlmin = require("html-minifier");
 const svgContents = require("eleventy-plugin-svg-contents");
 const mdIterator = require('markdown-it-for-inline')
 const embedEverything = require("eleventy-plugin-embed-everything");
-const pluginTOC = require('eleventy-plugin-nesting-toc');
+//const syntaxHighlighter = require("@11ty/eleventy-plugin-syntaxhighlight");
+//const syntaxHighlighter = require("@sardine/eleventy-plugin-code-highlighter");
+//const torchlight = require("eleventy-plugin-torchlight");
+const heroIcons = require("eleventy-plugin-heroicons");
+//const pluginTOC = require('eleventy-plugin-nesting-toc');
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 const Image = require("@11ty/eleventy-img");
 module.exports = function(eleventyConfig) {
   // eleventyConfig.addPlugin(pluginTOC);
   eleventyConfig.addPlugin(svgContents); 
   eleventyConfig.addPlugin(embedEverything);
+  eleventyConfig.addPlugin(heroIcons, {
+    className: 'icon',
+    errorOnMissing: true
+  });
   eleventyConfig.addShortcode("version", function () {
     return String(Date.now());
   });
@@ -26,8 +34,8 @@ module.exports = function(eleventyConfig) {
     let metadata = await Image(src, {
       widths: [400, 600, 800, 1000, 1200, 1400, 1600, 1900],
       formats: ['webp', 'jpeg', 'png'],
-      urlPath: "/content/images/",
-      outputDir: "./_site/content/images/"
+      urlPath: "/doc/content/images/",
+      outputDir: "../docs/content/images/"
     });
 
     let lowsrc = metadata.jpeg[0];
@@ -194,7 +202,12 @@ module.exports = function(eleventyConfig) {
   let markdownToc = require('markdown-it-table-of-contents')
   let markdownItTasks = require('markdown-it-task-lists')
   let markdownItAttrs = require("markdown-it-attrs")
+  let markdownItLabels = require("markdown-it-label")
   let markdownItCenterText = require("markdown-it-center-text")
+  let markdownItMultiMDTable = require("markdown-it-multimd-table")
+  let markdownItCharts = require("markdown-it-charts")
+  //let markdownItShortcodeTag = require("markdown-it-shortcode-tag")
+
   let options = {
     html: true,
     breaks: true,
@@ -206,6 +219,24 @@ module.exports = function(eleventyConfig) {
     // permalinkClass: "direct-link",
     // permalinkSymbol: "#"
   };
+
+  /*
+  // CFR: shortcode tags
+  // Create a '<bogus' html tag:
+  var shortcodeTags = {
+    bogus: {
+        render: function (attrs) {
+            return '<strong><p>' + attrs[meta] + '</p></strong>';
+        }
+    }
+  }
+  var shortcodeOptions = {
+    interpolator: function (expr, env) {
+        return 'Authored by ' + env[expr].author + ' on ' +
+               Date(env[expr].date).toLocaleDateString(env.locale) + '.';
+    }
+  }
+  */
 
   eleventyConfig.setLibrary("md", markdownIt(options)
     .use(mdIterator, 'url_new_win', 'link_open', function (tokens, idx) {
@@ -224,7 +255,10 @@ module.exports = function(eleventyConfig) {
     .use(markdownItContainer, 'callout-green')
     .use(markdownItContainer, 'warning')
     .use(markdownItTasks)
+    .use(markdownItLabels)
     .use(markdownItCenterText)
+    .use(markdownItMultiMDTable)
+    .use(markdownItCharts)
     .use(markdownLinkifyImages, {
       imgClass: "p-4",
     })
@@ -232,6 +266,8 @@ module.exports = function(eleventyConfig) {
       includeLevel: [2,3],
       listType: "ol"
     })
+    //.use(markdownItShortcodeTag, shortcodeTags, shortcodeOptions)
+    .use(markdownToc)
   );
 
   return {
@@ -241,7 +277,7 @@ module.exports = function(eleventyConfig) {
     // Leading or trailing slashes are all normalized away, so don’t worry about it.
     // If you don’t have a subdirectory, use "" or "/" (they do the same thing)
     // This is only used for URLs (it does not affect your file structure)
-    pathPrefix: "/",
+    pathPrefix: "/docs",
     markdownTemplateEngine: "liquid",
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk",
@@ -249,7 +285,7 @@ module.exports = function(eleventyConfig) {
       input: ".",
       includes: "_includes",
       data: "_data",
-      output: "_site"
+      output: "../docs"
     }
   };
 };

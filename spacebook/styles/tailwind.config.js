@@ -1,14 +1,13 @@
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  important: true,
   future: {
     removeDeprecatedGapUtilities: true,
     purgeLayersByDefault: true,
   },
   purge: {
     enabled: true,
-    content: ["_site/**/*.html"],
+    content: ["../docs/**/*.html"],
     options: {
       safelist: [],
     },
@@ -56,7 +55,7 @@ module.exports = {
   }, 
   variants: {},
   plugins: [
-    require('@tailwindcss/typography'),
+    require('@tailwindcss/typography')(),
     require('@tailwindcss/forms'),
   ],
 }

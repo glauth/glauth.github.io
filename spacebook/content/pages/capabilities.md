@@ -9,8 +9,7 @@ eleventyNavigation:
 ---
 Capabilities are a modern implementation of privileges as seen in OpenLDAP and other servers.
 
-Rather than using a tacked-on syntax that requires schema changes, these are encoded as key-value pairs, defining what actions 
-an account can perform, and to what scope.
+Rather than using a tacked-on syntax that requires schema changes, these are encoded as key-value pairs, defining what actions an account can perform, and to what scope.
 
 Example configuration:
 

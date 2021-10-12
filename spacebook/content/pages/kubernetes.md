@@ -14,8 +14,7 @@ Using our helm chart, you will be able to run GLAuth with your backend(s) of cho
 
 ## Usage
 
-[Helm](https://helm.sh) must be installed to use the charts.  Please refer to
-Helm's [documentation](https://helm.sh/docs) to get started.
+[Helm](https://helm.sh) must be installed to use the charts.  Please refer to Helm's [documentation](https://helm.sh/docs) to get started.
 
 Once Helm has been set up correctly, add the repo as follows:
 
@@ -23,9 +22,7 @@ Once Helm has been set up correctly, add the repo as follows:
 helm repo add glauth https://glauth.github.io/helm-glauth
 ```
 
-If you had already added this repo earlier, run `helm repo update` to retrieve
-the latest versions of the packages.  You can then run `helm search repo
-glauth` to see the charts.
+If you had already added this repo earlier, run `helm repo update` to retrieve the latest versions of the packages.  You can then run `helm search repo glauth` to see the charts.
 
 To install the glauth chart:
 
@@ -46,7 +43,6 @@ helm delete my-glauth
 The current configuration philosophy is to remain fully compatible with the config files already supported by GLAuth.
 
 In the future, GLAuth may be adapted to read Kubernetes secrets, etc. However, this would grow the project's code base quite significantly and I am thus focusing on creating an operator instead (should there be a demand!) -- this operator would reconcile the creation/deletion of secrets for user management purpose.
-
 ### values.yaml
 
 While it is perfectly feasible to install GLAuth quickly using the `install` command listed earlier, I would recommend retrieving a local copy of `values.yaml` and modifying it to fit your needs:

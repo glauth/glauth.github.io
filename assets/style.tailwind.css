@@ -126,25 +126,25 @@ p code::before, p code::after, li code::before, li code::after {
     @apply rounded-lg p-4 bg-gray-100 dark:bg-gray-500 border-gray-200 border-l-8 dark:border-gray-700;
   }
   .callout {
-    @apply px-8 py-4 mb-4 rounded-lg bg-yellow-50;
+    @apply px-8 py-4 mb-4 rounded-lg bg-yellow-500 text-gray-50;
   }
   .callout, .callout strong, .callout em {
     @apply dark:bg-gray-400 dark:text-gray-900;
   }
   .callout-blue {
-    @apply px-8 py-4 mb-4 rounded-lg bg-blue-50;
+    @apply px-8 py-4 mb-4 rounded-lg bg-blue-800 text-gray-50;
   }
   .callout-blue, .callout-blue strong, .callout-blue em {
     @apply dark:text-gray-200 dark:bg-blue-900;
   }
   .callout-pink {
-    @apply px-8 py-4 mb-4 rounded-lg bg-pink-50;
+    @apply px-8 py-4 mb-4 rounded-lg bg-pink-500 text-gray-50;
   }
   .callout-pink, .callout-pink strong, .callout-pink em {
     @apply dark:text-gray-200 dark:bg-pink-900;
   }
   .callout-green {
-    @apply px-8 py-4 mb-4 rounded-lg bg-green-50;
+    @apply px-8 py-4 mb-4 rounded-lg bg-green-500 text-gray-50;
   }
   .callout-green, .callout-green strong, .callout-green em {
     @apply dark:text-gray-200 dark:bg-green-900;

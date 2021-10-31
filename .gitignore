@@ -25,3 +25,4 @@ cache
 .yarn/build-state.yml
 .yarn/install-state.gz
 .webpack/
+docs/scratch.html

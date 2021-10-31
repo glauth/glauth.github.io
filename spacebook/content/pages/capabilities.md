@@ -14,7 +14,7 @@ Rather than using a tacked-on syntax that requires schema changes, these are enc
 Example configuration:
 
 ``` toml
-[[users]] # [tl! focus:1]
+[[users]] # [tl! focus]
   name = "hackers"
   uidnumber = 5001
   primarygroup = 5501

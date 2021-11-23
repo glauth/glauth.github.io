@@ -14,6 +14,7 @@ Example configuration:
 [backend]
   datastore = "plugin"
   plugin = "mysql.so"
+  pluginhandler = "NewMySQLHandler"
   database = "database connection string"
 ```
 

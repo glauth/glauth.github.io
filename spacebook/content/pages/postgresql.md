@@ -14,6 +14,7 @@ Example configuration:
 [backend]
   datastore = "plugin"
   plugin = "postgres.so"
+  pluginhandler = "NewPostgresHandler"
   database = "database connection string"
 ```
 

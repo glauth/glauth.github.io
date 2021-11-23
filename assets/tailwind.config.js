@@ -8,7 +8,7 @@ module.exports = {
   purge: {
     enabled: true,
     mode: 'all',
-    content: ["./*.html", "docs/**/*.html"],
+    content: ["./*.html", "docs/**/*.html", "comparison/*.html"],
     options: {
       safelist: [],
     },

@@ -14,6 +14,7 @@ Example configuration:
 [backend]
   datastore = "plugin"
   plugin = "sqlite.so"
+  pluginhandler = "NewSQLiteHandler"
   database = "path to your database file"
 ```
 

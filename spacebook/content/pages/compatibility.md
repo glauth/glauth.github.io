@@ -25,9 +25,11 @@ In order to prevent breaking existing setups, some of these changes are not enab
 [backend] # [tl! focus]
   datastore = "config"
   baseDN = "dc=glauth,dc=com"
-  nameformat = "ou" # [tl! focus:1]
+  nameformat = "cn" # [tl! focus:1]
   groupformat = "ou"
 ```
+
+Note that `cn` is already the default search attribute. You can use instead `uid` or `ou` and, as long as your bind DN if configured accordingly, you will be able to browse/search the directory.
 
 ## Noticeable changes
 

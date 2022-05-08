@@ -31,3 +31,20 @@ yarn prod
 ```
 
 Note: `yarn <xxx>` is equivalent to `npm run <xxx>`
+
+## OK, so... step by step?
+
+```
+cd spacebook
+brew install vips # mac only
+yarn install
+cd ..
+npm i run-p
+yarn sync
+```
+
+```
+cd spacebook
+yarn build
+```
+

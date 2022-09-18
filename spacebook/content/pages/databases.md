@@ -10,7 +10,7 @@ eleventyNavigation:
 ---
 Various databases can be used as long as they implement the database plugin interfaces.
 
-Database Tables:
+Database Tables (scroll down for complete schema):
 
 |Name|Function|
 |-|-|
@@ -59,3 +59,62 @@ INSERT INTO capabilities(userid, action, object)
 INSERT INTO capabilities(userid, action, object)
   VALUES(5003, "search", "*");
 ```
+
+## Database Schema 
+
+![http://localhost:8000/docs/content/images/glauth-simple-schema.png](/docs/content/images/glauth-simple-schema.png)
+
+### users table
+
+_this table contains all LDAP information pertaining to user accounts, including links to other tables_
+
+|Field|Function|
+|-|-|
+|id|internal id number, used by glauth|
+|name|LDAP name (i.e. `cn`, `uid`)|
+|uidnumber|LDAP `UID` attribute|
+|primarygroup|An LDAP group's `GID` attribute; also used to build `ou` attribute; used to build `memberOf`|
+|othergroups|A comma-separated list of `GID` attributes; used to build `memberOf`|
+|givenname|LDAP `GivenName` attribute, i.e. an account's first name|
+|sn|LDAP `sn` attribute, i.e. an account's last name|
+|mail|LDAP `mail` attribute, i.e. email address; also used as `userPrincipalName`|
+|loginshell|LDAP `loginShell` attribute, pushed to the client, may be ignored|
+|homedirectory|LDAP `homeDirectory` attribute, pushed to the client, may be ignored|
+|disabled|LDAP `accountStatus` attribute, if non-zero returns "inactive"|
+|passha256|SHA256 account password|
+|passbcrypt|BCRYPT-encrypted account password|
+|otpsecret|OTP secret, for two-factor authentication|
+|yubikey|UBIKey, for two-factor authentication|
+|sshkeys|A comma-separated list of `sshPublicKey` attributes|
+|custattr|A JSON-encoded string, containing arbitrary additional attributes; must be `{}` by default|
+
+### groups table
+
+_this table represents primary and secondary LDAP groups_
+
+|Field|Function|
+|-|-|
+|id|internal id number, used by glauth|
+|name|LDAP group name (i.e. `cn` or `ou` depending on context)|
+|gidnumber|LDAP `GID` attribute|
+
+### includegroups table
+
+_this table is used to represent groups containing other groups and inheriting their attributes_
+
+|Field|Function|
+|-|-|
+|id|internal id number, used by glauth|
+|parentgroupid|the LDAP group id containing another group, used by glauth|
+|includegroupid|the LDAP group id contained in the parent group, used by glauth|
+
+### capabilities table
+
+_this table is used to retrieve capabilities granted to users linked to it from the users table_
+
+|Field|Function|
+|-|-|
+|id|internal id number, used by glauth|
+|userid|internal user id number, used by glauth|
+|action|string representing an allowed action, e.g. "search"|
+|object|string representing scope of allowed action, e.g. "ou=superheros,dc=glauth,dc=com"|

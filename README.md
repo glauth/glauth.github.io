@@ -48,3 +48,54 @@ cd spacebook
 yarn build
 ```
 
+## Database diagram created using dbdiagram.io
+
+```
+// Note: only mysql limited by varchar
+
+
+Table users as U {
+  id int [pk, increment]
+  name varchar(64)
+  uidnumber int
+  primarygroup int [ref: > G.id]
+  othergroups varchar(1024) [default:'', ref: <> G.id]
+  givenname varchar(64) [default:'']
+  sn varchar(64) [default:'']
+  mail varchar(254) [default:'']
+  loginshell varchar(64) [default:'']
+  homedirectory varchar(64) [default:'']
+  disabled int2 [default:0]
+  passsha256 varchar(64) [default:'']
+  passbcrypt varchar(64) [default:'']
+  otpsecret varchar(64) [default:'']
+  yubikey varchar(128) [default:'']
+  sshkeys text [default:'']
+  custattr text [default:'{}']
+  Indexes {
+    (name) [name:'idx_user_name']
+  }
+}
+
+Table groups as G {
+  id int [pk, increment]
+  name varchar(64) [not null]
+  gidnumber int [not null]
+  Indexes {
+    (name) [name:'idx_group_name']
+  }
+}
+
+Table includegroups {
+  id int [pk, increment]
+  parentgroupid int [not null, ref: > G.id]
+  includegroupid int [not null, ref: > G.id]
+}
+
+Table capabilities {
+  id int [pk, increment]
+  userid int [not null, ref: > U.id]
+  action varchar(128) [not null]
+  object varchar(128) [not null]
+}
+```

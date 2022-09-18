@@ -9,7 +9,7 @@ eleventyNavigation:
   title: Running Travis-CI Locally
 ---
 ::: warning
-Circle CI is now a paid only product, even for open source projects.
+Travis CI is now a paid only product, even for open source projects.
 We have moved our continuous integration to GitHub actions (see .github folder)
 :::
 

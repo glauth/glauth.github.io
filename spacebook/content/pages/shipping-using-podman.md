@@ -1,12 +1,12 @@
 ---
-title: Shipping using Podman
+title: Shipping using Podman (Deprecated)
 date: Last Modified 
 permalink: shipping-using-podman.html
 eleventyNavigation:
   key: Shipping-using-Podman
   parent: Development
   order: 1140
-  title: Using Podman
+  title: Using Podman (Deprecated)
 ---
 ## Rationale
 

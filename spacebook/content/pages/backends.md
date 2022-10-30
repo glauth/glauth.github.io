@@ -19,7 +19,22 @@ Unfortunately, Go plugins are not compatible with Windows OS. Therefore, they ar
 
 ## Chaining
 
-Backends can be chained to inject features that are not originally available. For instance, you can setup GLAuth to forward authentication requests to an existing OpenLDAP server, but not before using another backend to inject two-factor authentication checks.
+Backends can be chained to inject features that are not originally available. For instance, you can setup GLAuth to forward authentication requests to an existing OpenLDAP server, but not before using another backend to inject two-factor authentication checks:
+
+```
+[[backends]]
+  datastore = "ldap"
+  servers = ["ldap:s//localhost:390"]
+
+[[backends]]
+  datastore = "config"
+
+...
+
+[[users]]
+  name = "hackers"
+  otpsecret = "................"
+```
 
 
 

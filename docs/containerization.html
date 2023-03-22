@@ -18,7 +18,7 @@
   -p 636:3894 \
   -p 5555:5555 \
   glauth/glauth
-</code></pre><h2 id="sqlite">sqlite</h2><p>If you are using sqlite, please follow these instructions to avoid losing your data!</p><p>You sqlite database must be made permanent. It can either be stored on the host, on in a dedicated volume (more difficult)</p><div class="warning"><p>You database will be clobbered if you do not specify a configuration file. Unless…</p></div><h3 id="method-%231%3A-configuration-file-%2B-database-file-on-host">Method #1: configuration file + database file on host</h3><p>Retrieve a base database file from <a href="https://github.com/glauth/glauth/raw/master/v2/scripts/docker/gl.db" target="_blank" rel="noopener noreferrer">https://github.com/glauth/glauth/raw/master/v2/scripts/docker/gl.db</a></p><pre><code class="language-shell">docker run -d \
+</code></pre><h2 id="sqlite">sqlite</h2><p>If you are using sqlite, please follow these instructions to avoid losing your data!</p><p>You sqlite database must be made permanent. It can either be stored on the host, on in a dedicated volume (more difficult)</p><div class="warning"><p>You database will be clobbered if you do not specify a configuration file. Unless…</p></div><h3 id="method-%231%3A-configuration-file-%2B-database-file-on-host">Method #1: configuration file + database file on host</h3><p>Retrieve a base database file from <a href="https://github.com/glauth/glauth/raw/master/v2/docker/assets/gl.db" target="_blank" rel="noopener noreferrer">https://github.com/glauth/glauth/raw/master/v2/docker/assets/gl.db</a></p><pre><code class="language-shell">docker run -d \
   -v &lt;path&gt;/config.cfg:/app/config/config.cfg \
   -v &lt;path&gt;/gl.db:/app/config/gl.db \
   glauth/glauth

@@ -5,7 +5,7 @@ permalink: testing.html
 eleventyNavigation:
   key: Testing
   parent: Development
-  order: 1109
+  order: 1113
   title: Testing
 ---
 A core set of tests is being run by Github Actions CI. However, when developing new features/refactoring, a more comprehensive regression testing suite is needed.

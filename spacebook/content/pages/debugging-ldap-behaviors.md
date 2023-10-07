@@ -5,7 +5,7 @@ permalink: debugging-ldap-behaviors.html
 eleventyNavigation:
   key: Debugging-LDAP
   parent: Development
-  order: 1110
+  order: 1115
   title: Debugging LDAP Behaviors
 ---
 ## Understanding LDAP filters

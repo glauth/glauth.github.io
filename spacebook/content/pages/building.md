@@ -10,8 +10,6 @@ eleventyNavigation:
 ---
 ## Make Targets
 
-Note - makefile uses git data to inject build-time variables. For best results, run in the context of the git repo.
-
 |Target|Description|
 |-|-|
 |*make all*|run build binaries for platforms|

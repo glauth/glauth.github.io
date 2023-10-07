@@ -12,6 +12,8 @@ You may find this section interesting if you are either:
 - helping test or document GLAuth
 - writing a third-party tool
 
+[Building](building.html)
+
 [Logging](logging.html)
 
 [Testing](testing.html)
@@ -26,5 +28,4 @@ You may find this section interesting if you are either:
 
 ## Contributing
 
-- Please base all Pull Requests on [dev](https://github.com/glauth/glauth/tree/dev), not master.
-- Format your code autonmatically using `gofmt -d ./` before committing
+Contributing now has its own [documentation](contributing.html)

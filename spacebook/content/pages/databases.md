@@ -10,7 +10,9 @@ eleventyNavigation:
 ---
 Various databases can be used as long as they implement the database plugin interfaces.
 
-Database Tables (scroll down for complete schema):
+[[toc]]
+
+Database Tables (scroll down for complete schema and discussion):
 
 |Name|Function|
 |-|-|
@@ -59,6 +61,92 @@ INSERT INTO capabilities(userid, action, object)
 INSERT INTO capabilities(userid, action, object)
   VALUES(5003, "search", "*");
 ```
+
+This should be equivalent to this configuration:
+```toml
+[[users]]
+  name = "hackers"
+  uidnumber = 5001
+  primarygroup = 5501
+  passsha256 = "6478579e37aff45f013e14eeb30b3cc56c72ccdc310123bcdf53e0333e3f416a" # dogood
+    [[users.capabilities]]
+    action = "search"
+    object = "ou=superheros,dc=glauth,dc=com"
+
+[[users]]
+  name = "johndoe"
+  uidnumber = 5002
+  primarygroup = 5502
+  passsha256 = "6478579e37aff45f013e14eeb30b3cc56c72ccdc310123bcdf53e0333e3f416a" # dogood
+
+[[users]]
+  name = "serviceuser"
+  mail = "serviceuser@example.com"
+  uidnumber = 5003
+  passsha256 = "652c7dc687d98c9889304ed2e408c74b611e86a40caa51c4b43f1dd5913c5cd0" # mysecret
+  primarygroup = 5502
+    [[users.capabilities]]
+    action = "search"
+    object = "*"
+
+[[users]]
+  name = "user4"
+  uidnumber = 5003
+  primarygroup = 5504
+  othergroups = [5505, 5506]
+  passsha256 = "652c7dc687d98c9889304ed2e408c74b611e86a40caa51c4b43f1dd5913c5cd0" # mysecret
+    [[users.customattributes]]
+    employeetype = ["Intern", "Temp"]
+    employeenumber = [12345, 54321]
+
+[[groups]]
+  name = "superheros"
+  gidnumber = 5501
+
+[[groups]]
+  name = "svcaccts"
+  gidnumber = 5502
+
+[[groups]]
+  name = "civilians"
+  gidnumber = 5503
+  includegroups = [ 5501 ]
+
+[[groups]]
+  name = "caped"
+  gidnumber = 5504
+  includegroups = [ 5502, 5501 ]
+```
+
+and LDAP should return these `memberOf` values:
+
+```text
+uid: hackers
+ou: superheros
+memberOf: cn=caped,ou=groups,dc=militate,dc=com
+memberOf: cn=civilians,ou=groups,dc=militate,dc=com
+memberOf: cn=superheros,ou=groups,dc=militate,dc=com
+
+uid: johndoe
+ou: svcaccts
+memberOf: cn=caped,ou=groups,dc=militate,dc=com
+memberOf: cn=svcaccts,ou=groups,dc=militate,dc=com
+
+uid: serviceuser
+ou: caped
+memberOf: cn=caped,ou=groups,dc=militate,dc=com
+
+uid: user4
+ou: caped
+memberOf: cn=caped,ou=groups,dc=militate,dc=com
+memberOf: cn=lovesailing,ou=groups,dc=militate,dc=com
+memberOf: cn=smoker,ou=groups,dc=militate,dc=com
+```
+If you have the ldap client package installed, this can be easily confirmed by running
+```
+ldapsearch  -H ldap://localhost:3893 -D cn=hackers,ou=superheros,dc=glauth,dc=com -w dogood -x -bdc=glauth,dc=com cn=hackers
+```
+and so on.
 
 ## Database Schema 
 
@@ -118,3 +206,19 @@ _this table is used to retrieve capabilities granted to users linked to it from 
 |userid|internal user id number, used by glauth|
 |action|string representing an allowed action, e.g. "search"|
 |object|string representing scope of allowed action, e.g. "ou=superheros,dc=glauth,dc=com"|
+
+### Discussion: database schema
+
+While GLAuth is not meant to support millions of user accounts, some decent performance is still expected! In fact, when searching through records using a database query, we should see a performance of O(log n) as opposed to, when searching through a flat config, O(n).
+
+While it would be friendlier to offer related attributes in `join`ed tables, we may end up re-creating a "browse" scenario unintentionally.
+
+For instance, when retrieving custom attributes, we could go through an attribute table: `custattr[userid, attribute, value#n]`
+
+However, this means that a `join` statement between the account table and the custom attribute table would yield the cartesian product of each account x attributes; we would need to iterate through the results and collate them.
+
+Alternatively, in Postgres and MySQL, we could rely on the database engine's built-in support for `crosstab` which pivots the second table's results into corresponding columns. This would not be supported in SQLite and would also mean building pretty nasty execution plans.
+
+**So, what's the decision?**
+
+In GLAuth 2.x, when including information that does not benefit from being normalized (e.g. custom attributes) we are following the "nosql" trend (irony!) of storing this data in a JSON structure.

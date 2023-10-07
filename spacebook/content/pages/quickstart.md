@@ -21,3 +21,7 @@ ldapsearch -LLL -H ldap://localhost:3893 \
    -D cn=serviceuser,ou=svcaccts,dc=glauth,dc=com -w mysecret \
    -x -bdc=glauth,dc=com cn=hackers
 ```
+
+## Databases
+
+To get started with one of the supported database engines, please follow [this link](databases.html) :toolbox:

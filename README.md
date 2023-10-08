@@ -70,3 +70,14 @@ Here is a footnote reference,[^1] and another.[^longnote]
     Subsequent paragraphs are indented to show that they
 belong to the previous footnote.
 ```
+
+## Updating
+
+```
+git pull
+yarn sync # auto refresh
+yarn doc # refresh doc pages
+yarn prod # and assets
+cp docs/docs/index-search.json docs/ # update search content
+git push
+```

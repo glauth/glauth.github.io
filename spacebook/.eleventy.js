@@ -4,18 +4,18 @@ const UglifyJS = require("uglify-es");
 const htmlmin = require("html-minifier");
 const svgContents = require("eleventy-plugin-svg-contents");
 const mdIterator = require('markdown-it-for-inline')
-const embedEverything = require("eleventy-plugin-embed-everything");
+//2023: const embedEverything = require("eleventy-plugin-embed-everything");
 //const syntaxHighlighter = require("@11ty/eleventy-plugin-syntaxhighlight");
 //const syntaxHighlighter = require("@sardine/eleventy-plugin-code-highlighter");
 //const torchlight = require("eleventy-plugin-torchlight");
 const heroIcons = require("eleventy-plugin-heroicons");
 //const pluginTOC = require('eleventy-plugin-nesting-toc');
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
-const Image = require("@11ty/eleventy-img");
+//2023: const Image = require("@11ty/eleventy-img");
 module.exports = function(eleventyConfig) {
     // eleventyConfig.addPlugin(pluginTOC);
     eleventyConfig.addPlugin(svgContents);
-    eleventyConfig.addPlugin(embedEverything);
+    //2023:     eleventyConfig.addPlugin(embedEverything);
     eleventyConfig.addPlugin(heroIcons, {
         className: 'icon',
         errorOnMissing: true
@@ -24,6 +24,7 @@ module.exports = function(eleventyConfig) {
         return String(Date.now());
     });
 
+    /* 2023:
     // Responsive image shortcode
     eleventyConfig.addLiquidShortcode("image", async function(src, alt, sizes = "100vw") {
         if (alt === undefined) {
@@ -53,7 +54,7 @@ module.exports = function(eleventyConfig) {
 
         return `${picture}`;
 
-    });
+    }); */
 
     eleventyConfig.addLiquidShortcode("icon", function(title, url) {
         return '<img class="icon" src="' + url + '" alt="' + title + '" />';

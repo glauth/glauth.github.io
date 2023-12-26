@@ -5,8 +5,8 @@
   "scripts": {
     "help": "eleventy --help",
     "start": "eleventy --serve & postcss styles/tailwind.css --o _tmp/style.css --watch",
-    "build": "ELEVENTY_PRODUCTION=true eleventy && NODE_ENV=production postcss styles/tailwind.css --o ../docs/style.css &&  ./node_modules/.bin/cleancss -o ../docs/style.css ../docs/style.css && npx torchlight",
-    "doc": "ELEVENTY_PRODUCTION=true eleventy && npx torchlight",
+    "build": "ELEVENTY_PRODUCTION=true eleventy && NODE_ENV=production postcss styles/tailwind.css --o ../docs/style.css &&  ./node_modules/.bin/cleancss -o ../docs/style.css ../docs/style.css && cd .. && npx torchlight",
+    "doc": "ELEVENTY_PRODUCTION=true eleventy && cd .. && npx torchlight",
     "watch": "npx eleventy --watch",
     "debug": "DEBUG=* npx eleventy"
   },

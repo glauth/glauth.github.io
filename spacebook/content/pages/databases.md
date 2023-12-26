@@ -17,7 +17,7 @@ Database Tables (scroll down for complete schema and discussion):
 |Name|Function|
 |-|-|
 |users|your users, of course|
-|groups|primary and secondary groups available|
+|ldapgroups|primary and secondary groups available|
 |includegroups|store group indirections (equivalent to `includegroups` directive)|
 
 Note that, in `users`, `othergroups` is a comma-separated list of group ids.
@@ -25,17 +25,17 @@ Note that, in `users`, `othergroups` is a comma-separated list of group ids.
 Here is how to insert some example data in your database using its REPL:
 
 ```sql
-INSERT INTO groups(name, gidnumber)
+INSERT INTO ldapgroups(name, gidnumber)
   VALUES('superheros', 5501);
-INSERT INTO groups(name, gidnumber)
+INSERT INTO ldapgroups(name, gidnumber)
   VALUES('svcaccts', 5502);
-INSERT INTO groups(name, gidnumber)
+INSERT INTO ldapgroups(name, gidnumber)
   VALUES('civilians', 5503);
-INSERT INTO groups(name, gidnumber)
+INSERT INTO ldapgroups(name, gidnumber)
   VALUES('caped', 5504);
-INSERT INTO groups(name, gidnumber)
+INSERT INTO ldapgroups(name, gidnumber)
   VALUES('lovesailing', 5505);
-INSERT INTO groups(name, gidnumber)
+INSERT INTO ldapgroups(name, gidnumber)
   VALUES('smoker', 5506);
 INSERT INTO includegroups(parentgroupid, includegroupid)
   VALUES(5503, 5501);
@@ -120,7 +120,7 @@ This should be equivalent to this configuration:
 
 and LDAP should return these `memberOf` values:
 
-```text
+```shell
 uid: hackers
 ou: superheros
 memberOf: cn=caped,ou=groups,dc=militate,dc=com
@@ -143,8 +143,8 @@ memberOf: cn=lovesailing,ou=groups,dc=militate,dc=com
 memberOf: cn=smoker,ou=groups,dc=militate,dc=com
 ```
 If you have the ldap client package installed, this can be easily confirmed by running
-```
-ldapsearch  -H ldap://localhost:3893 -D cn=hackers,ou=superheros,dc=glauth,dc=com -w dogood -x -bdc=glauth,dc=com cn=hackers
+```shell
+ldapsearch -LLL -H ldap://localhost:3893 -D cn=serviceuser,ou=svcaccts,dc=glauth,dc=com -w mysecret -x -bdc=glauth,dc=com cn=hackers
 ```
 and so on.
 
@@ -176,7 +176,7 @@ _this table contains all LDAP information pertaining to user accounts, including
 |sshkeys|A comma-separated list of `sshPublicKey` attributes|
 |custattr|A JSON-encoded string, containing arbitrary additional attributes; must be `{}` by default|
 
-### groups table
+### ldapgroups table
 
 _this table represents primary and secondary LDAP groups_
 

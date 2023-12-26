@@ -107,6 +107,11 @@ p code::before, p code::after, li code::before, li code::after {
   .prose pre code {
     @apply overflow-x-auto !important 
   }
+  .prose code {
+      font-weight: 200;
+      padding-left: 8px;
+      padding-right: 8px;
+  }
   .prose .footer-nav a {
     @apply no-underline !important
   }

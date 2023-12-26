@@ -28,13 +28,13 @@ Example configuration:
 |-|-|
 |search|Define the scope of where a search action can be performed|
 
-Introduced in 2.1.0, this feature continues improving the intrinsic security model of GLAuth.
+Introduced in _2.1.0_, this feature continues improving the intrinsic security model of GLAuth.
 
 While some level of access control is already enforced when using an LDAP backend, Capabilities are now part of the Config and Database backends.
 
 Currently, one capability is recognized: "search" -- here is how to configure it in a Config yaml file:
 
-```
+```toml
 ...
 [behaviors]
   # Ignore all capabilities restrictions, for instance allowing every user to perform a search

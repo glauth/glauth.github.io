@@ -1,0 +1,52 @@
+# Build: d2 -t 200 -s glauth-simple-schema.d2 glauth-simple-schema.png
+
+users: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  name: varchar(64) {constraint: unique}
+  uidnumber: int
+  primarygroup: int
+  othergroups: varchar(1024)
+  givenname: varchar(64)
+  sn: varchar(64)
+  mail: varchar(254)
+  loginshell: varchar(64)
+  homedirectory: varchar(64)
+  disable: int2
+  passsha256: varchar(64)
+  passbcrypt: varchar(64)
+  otpsecret: varchar(64)
+  yubikey: varchar(127)
+  sshkeys: text
+  custattr: text
+}
+
+ldapgroups: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  name: varchar(64) {constraint: unique}
+  gidnumber: int
+}
+
+includegroups: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  parentgroupid: int
+  includegroupid: int
+}
+
+capabilities: {
+  shape: sql_table
+  id: int {constraint: primary_key}
+  userid: int
+  action: varchar(128)
+  object: varchar(128)
+}
+
+users.primarygroup -> ldapgroups.gidnumber
+users.othergroups <-> ldapgroups.gidnumber
+
+ldapgroups.gidnumber <- includegroups.parentgroupid
+ldapgroups.gidnumber <- includegroups.includegroupid
+
+users.uidnumber -> capabilities.userid

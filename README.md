@@ -57,10 +57,13 @@ See `.txt` files in `content/images/`
 ```
 [[toc]]
 
+```
 ::: wanrning
 blah
 :::
+```
 
+```
 Here is a footnote reference,[^1] and another.[^longnote]
 
 [^1]: Here is the footnote.
@@ -69,6 +72,15 @@ Here is a footnote reference,[^1] and another.[^longnote]
 
     Subsequent paragraphs are indented to show that they
 belong to the previous footnote.
+```
+
+```
+<-Centered text->
+```
+
+Labels:
+```
+#[important](red)
 ```
 
 ## Updating

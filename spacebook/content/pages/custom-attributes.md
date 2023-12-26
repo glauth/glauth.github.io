@@ -33,7 +33,7 @@ Here is an example:
 
 ### In a database plugin backend
 
-This is the new (as of 2.1.0) database field `custattr` in the `users` table.
+This is the new (as of _2.1.0_) database field `custattr` in the `users` table.
 
 This field contains a valid JSON expression (please do not store an empty string of invalid JSON in this field!) that will be expanded to a set of multi-valued attributes.
 

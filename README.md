@@ -90,6 +90,6 @@ git pull
 yarn sync # auto refresh
 yarn doc # refresh doc pages
 yarn prod # and assets
-cp docs/docs/index-search.json docs/ # update search content
+# LOOKs LIKE THIS SHOULD BE DEPRECATED AND NOW WORKS OUT OF THE BOX: cp docs/docs/index-search.json docs/ # update search content
 git push
 ```

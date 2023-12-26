@@ -26,6 +26,12 @@ eleventyNavigation:
 
 To build a plugin, pull GLauth's codebase, and make sure that the plugin is a submodule of the main repository.
 
+First, pull the full GLauth hierarchy:
+
+```bash
+git clone --recurse-submodules git@github.com:glauth/glauth.git
+```
+
 Run `make prepare-plugins-release` to update the top-level dependencies with the plugins'
 
 Then, run `make releaseplugins`

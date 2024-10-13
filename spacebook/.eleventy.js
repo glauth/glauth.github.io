@@ -1,3 +1,4 @@
+const fs = require('fs');
 const { DateTime } = require("luxon");
 const CleanCSS = require("clean-css");
 const UglifyJS = require("uglify-es");
@@ -7,7 +8,7 @@ const mdIterator = require('markdown-it-for-inline')
 //2023: const embedEverything = require("eleventy-plugin-embed-everything");
 //const syntaxHighlighter = require("@11ty/eleventy-plugin-syntaxhighlight");
 //const syntaxHighlighter = require("@sardine/eleventy-plugin-code-highlighter");
-//const torchlight = require("eleventy-plugin-torchlight");
+const torchlight = require("eleventy-plugin-torchlight");
 const heroIcons = require("eleventy-plugin-heroicons");
 //const pluginTOC = require('eleventy-plugin-nesting-toc');
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
@@ -19,6 +20,33 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPlugin(heroIcons, {
         className: 'icon',
         errorOnMissing: true
+    });
+    try {
+        tlToken = fs.readFileSync('../torchlight_token.txt', 'utf8');
+    } catch (err) {
+        console.error(err);
+        process.exit(1);
+    }
+    eleventyConfig.addPlugin(torchlight, {
+        token: tlToken,
+        cache: 'cache',
+        host: 'https://api.torchlight.dev',
+        options: {
+            lineNumbers: false,
+            diffIndicators: true,
+            diffIndicatorsInPlaceOfLineNumbers: true
+        },
+        highlight: {
+            input: '../docs',
+            output: '../docs',
+            includeGlobs: [
+                '**/*.html'
+            ],
+            excludePatterns: [
+                '/node_modules/',
+                '/vendor/'
+            ]
+        }
     });
     eleventyConfig.addShortcode("version", function() {
         return String(Date.now());

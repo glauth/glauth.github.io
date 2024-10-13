@@ -26,7 +26,11 @@ Store these files in a directory and point GLauth to that directory using `-c di
 |Name|The user's username|
 |ou|ID of the user's primary group|
 |uidnumber|The user's unix user id|
-|sshPublicKey|Specify an array of public keys|
+|passsha256 _[or &darr;]_|The user's unix password, hashed using SHA256|
+|passbcrypt _[or &uarr;]_|The user's unix password, hashed using bcrypt|
+|primarygroup|ID of the user's primary group|
+
+`passsha256` and `passbcrypt` are mutually exclusive. They are also not required if the backend is chained behind another backend, such as `ldap`.
 
 ## Optional Fields
 
@@ -42,4 +46,7 @@ Store these files in a directory and point GLauth to that directory using `-c di
 |otpsecret|Specify OTP secret used to validate OTP passcode|3hnvnk4ycv44glzigd6s25j4dougs3rk|blank|
 |passappbcrypt|Specify an array of app passwords which can also succesfully bind - these bypass the OTP check. Hash the same way as password.|["c32256...","4939ef..."]|blank|
 |passappsha256|Specify an array of app passwords which can also succesfully bind - these bypass the OTP check. Hash the same way as password.|["c32256...","4939ef..."]|blank|
+|sshPublicKey|Specify an array of public keys|["ssh-rsa...","ssh-ed25519..."]|blank|
 |yubikey|Specify Yubikey ID for maching Yubikey OTP against the user|cccjgjgkhcbb|blank|
+|capabilities|Specify an array of capabilities the user has|[action="search", object="ou=heroes,dc=glauth,dc=com"]|blank|
+|customattributes|Specify an array of custom attributes|[employeetype=["Intern"]]|blank|

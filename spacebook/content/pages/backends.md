@@ -17,6 +17,8 @@ Additional backends, available as plugins, let you wire databases as authenticat
 Unfortunately, Go plugins are not compatible with Windows OS. Therefore, they are only available on Linux and MacOS.
 :::
 
+In order to work around this limitation, an experimental version of GLAuth has been in the works: it leverages a new backend type, `embed`
+
 ## Chaining
 
 Backends can be chained to inject features that are not originally available. For instance, you can setup GLAuth to forward authentication requests to an existing OpenLDAP server, but not before using another backend to inject two-factor authentication checks:

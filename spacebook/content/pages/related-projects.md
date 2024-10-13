@@ -7,6 +7,10 @@ eleventyNavigation:
   order: 1010
   title: Related Projects
 ---
+::: callout
+For a comprehensive list of resources, please visit the [directory page](/planet/).
+:::
+
 [glauth-ui](https://github.com/sonicnkt/glauth-ui)
 
 > Glauth-UI is a small flask web app i created to manage the minimal glauth ldap server. I created this as i wanted to use glauth for authentication in several service at home and at work, but since it is readonly there is no way for users to configure their own password for example.

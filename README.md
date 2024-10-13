@@ -10,6 +10,8 @@ Still quite bare but I don't think either of us would like to add fluff for no r
 
 This website now also offers a documentation area.
 
+A quick note regarding yarn. If it is not installed globally, you can install locally it using `npm install yarn` and adding `node_modules/yarn/bin` to your PATH.
+
 While authoring the documentation, one can keep checking their work using:
 ```
 cd spacebook && yarn watch

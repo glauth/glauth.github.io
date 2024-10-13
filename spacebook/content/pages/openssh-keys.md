@@ -14,3 +14,15 @@ sshkeys = ["ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEA3UKCEllO2IZXgqNygiVb+dDLJJwVw3AJ
 ```
 
 Add one or more keys per user as shown above, then follow the steps to setup the goklp helper: https://github.com/glauth/goklp
+
+On the server side, you must configure the SSH server to run a script that will check the user's SSH keys against the LDAP server.
+
+When using SSSD, you can for instance edit `/etc/ssh/sshd_config` and add the following line:
+```
+AuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys
+AuthorizedKeysCommandUser nobody
+```
+
+::: callout
+For further documentation regarding using OpenSSH keys, please visit the [SSH Integration section](ssh-integration.html).
+:::
